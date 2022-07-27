@@ -24,15 +24,29 @@
 //
 // Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
 
-// Toggle global options
-$enable-gradients: true;
-$enable-shadows: true;
-
 // Customize some defaults
-$body-color: #333;
-$body-bg: #fff;
-$border-radius: .4rem;
-$success: #7952b3;
+$white: #e3edeb;
+$primary: #a01d29;
+$secondary: #434343;
+$success: #07819a;
+$info: #3aafbd;
+$danger: #e31f26;
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("../fonts/WorkSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("../fonts/WorkSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+$font-family-sans-serif: "WorkSans";
 
 @import "bootstrap/scss/functions"; // Required
 @import "bootstrap/scss/variables"; // Required
@@ -52,9 +66,9 @@ $success: #7952b3;
 // @import "bootstrap/scss/button-group";
 // @import "bootstrap/scss/input-group"; // Requires forms
 // @import "bootstrap/scss/custom-forms";
-// @import "bootstrap/scss/nav";
-// @import "bootstrap/scss/navbar"; // Requires nav
-// @import "bootstrap/scss/card";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar"; // Requires nav
+@import "bootstrap/scss/card";
 // @import "bootstrap/scss/breadcrumb";
 // @import "bootstrap/scss/pagination";
 // @import "bootstrap/scss/badge";
