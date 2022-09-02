@@ -25,7 +25,6 @@
 // Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
 
 // Customize some defaults
-$white: #e3edeb;
 $primary: #a01d29;
 $secondary: #434343;
 $success: #07819a;
@@ -33,7 +32,7 @@ $info: #3aafbd;
 $warning: #e3edeb;
 $danger: #e31f26;
 
-$font-size-base: .85rem;
+$font-size-base: 1rem;
 
 @font-face {
   font-family: "WorkSans";
@@ -96,10 +95,29 @@ $font-family-sans-serif: "WorkSans";
 //
 
 body {
-  padding: 3rem 1.5rem;
+  padding: 3rem 0rem;
 }
 
 // Style Bootstrap icons
 .bi {
   fill: currentColor;
+}
+
+.container {
+  min-width: 85% !important;
+  object-fit: contain;
+}
+
+.promos {
+  img {
+    max-height: 5rem;
+  }
+}
+
+.promos>a:hover {
+  border-color: #d6ce4b;
+}
+
+.panel-vocabulary-description {
+  display: none;
 }
