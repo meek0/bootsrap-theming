@@ -29,10 +29,9 @@ $primary: #a01d29;
 $secondary: #434343;
 $success: #07819a;
 $info: #3aafbd;
-$warning: #e3edeb;
 $danger: #e31f26;
 
-$font-size-base: 1.1rem;
+$font-size-base: 1rem;
 
 @font-face {
   font-family: "WorkSans";
@@ -98,6 +97,10 @@ body {
   padding: 3rem 0rem;
 }
 
+body .wrapper .content-wrapper {
+  background-color: $white !important;
+  margin-top: 1rem !important;
+}
 
 // Style Bootstrap icons
 .bi {
@@ -135,4 +138,3 @@ body {
   background-position: bottom;
   background-attachment: scroll;
 }
-
