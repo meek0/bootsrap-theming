@@ -108,7 +108,7 @@ body .wrapper .content-wrapper {
 }
 
 .container {
-  min-width: 85% !important;
+  max-width: 90% !important;
   object-fit: contain;
 }
 
@@ -127,12 +127,11 @@ body .wrapper .content-wrapper {
 }
 
 .bg-citf {
-  background-color: #17565C;
-
+  background-color: $secondary;
 }
 
 .intro-background-image {
-  background-image: url("../images/CITF_page-header-bg-blue.png");
+  background-image: url("../images/CITF_page-header-bg.png");
   background-repeat:no-repeat;
   background-size:contain;
   background-position: bottom;
