@@ -95,7 +95,7 @@ $font-family-sans-serif: "WorkSans";
 //
 
 body {
-  padding: 3rem 0rem;
+  padding: 3rem 0rem 0rem 0rem;
 }
 
 body .wrapper .content-wrapper {
@@ -133,8 +133,8 @@ body .wrapper .content-wrapper {
 
 .intro-background-image {
   background-image: url("../images/CITF_page-header-bg.png");
-  background-repeat:no-repeat;
-  background-size:contain;
+  background-repeat: no-repeat;
+  background-size: contain;
   background-position: bottom;
   background-attachment: scroll;
 }

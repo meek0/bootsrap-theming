@@ -7006,7 +7006,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 body {
-  padding: 3rem 0rem;
+  padding: 3rem 0rem 0rem 0rem;
 }
 
 body .wrapper .content-wrapper {
