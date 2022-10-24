@@ -95,7 +95,11 @@ $font-family-sans-serif: "WorkSans";
 //
 
 body {
-  padding: 4rem 0rem 0rem 0rem;
+  padding: 8rem 0 0 0;
+}
+
+body.sidebar-mini {
+  padding: 4rem 0 0 0;
 }
 
 body .wrapper .content-wrapper {
@@ -139,8 +143,16 @@ body .wrapper .content-wrapper {
   background-attachment: scroll;
 }
 
+.footer-background-image {
+  background-image: url("../images/CITF_blue-emblem.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom left;
+  background-attachment: scroll;
+}
+
 footer {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .brand-image-large {
