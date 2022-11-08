@@ -174,3 +174,71 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (min-width: 768px) {
+  #taxonomy-modal .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  #taxonomy-modal .card-body .col-sm-4 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+#taxonomy-modal .modal-dialog {
+  max-width: 67%;
+}
+
+#taxonomy-modal .panel-vocabulary-description, #taxonomy-modal .panel-taxonomy-description {
+  display: none;
+}
+
+#taxonomy-modal .panel-vocabulary-title::after,
+#harmonizedTable thead th:nth-child(2)::after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  margin-left: 0.25em;
+  content: "\f05a";
+  opacity: 0.6;
+}
+
+#taxonomy-modal .panel-taxonomy-title {
+  font-size: 1.25rem;
+}
+
+#taxonomy-modal .card-header {
+  padding: .5rem 1.25rem;;
+}
+
+#taxonomy-modal .card-body input[type=text] {
+  margin-bottom: 1.25em;
+}
+
+#taxonomy-modal .card-body ul {
+  margin-bottom: .5em;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link i {
+  display: none;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link {
+  color: $primary;
+  border-color: $primary;
+  margin-bottom: 0.5em;
+  text-decoration: none;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link:hover {
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary;
+  text-decoration: none;
+}
