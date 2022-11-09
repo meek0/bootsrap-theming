@@ -7147,4 +7147,10 @@ footer {
   text-decoration: none;
 }
 
+.badge.navbar-badge {
+  font-size: 0.6rem !important;
+  font-weight: 700 !important;
+  right: -5px !important;
+}
+
 /*# sourceMappingURL=custom.css.map */
