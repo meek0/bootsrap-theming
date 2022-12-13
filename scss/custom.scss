@@ -249,3 +249,10 @@ footer {
   font-weight: 700 !important;
   right: -5px !important;
 }
+
+#harmonizedTable td:not(:first-child),
+#harmonizedTable th:not(:first-child),
+#harmonizedVariables td:nth-child(4),
+#harmonizedVariables th:nth-child(4) {
+  text-align: center !important;
+}
