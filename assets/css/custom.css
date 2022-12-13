@@ -7178,4 +7178,12 @@ footer {
   text-align: center !important;
 }
 
+table#vosr-variables-result th.column-label {
+  width: 25% !important;
+}
+
+table#vosr-variables-result th.column-annotations {
+  width: 25% !important;
+}
+
 /*# sourceMappingURL=custom.css.map */

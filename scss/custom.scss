@@ -256,3 +256,11 @@ footer {
 #harmonizedVariables th:nth-child(4) {
   text-align: center !important;
 }
+
+table#vosr-variables-result th.column-label {
+  width: 25% !important;
+}
+
+table#vosr-variables-result th.column-annotations {
+  width: 25% !important;
+}
