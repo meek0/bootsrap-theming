@@ -29,12 +29,56 @@ $enable-gradients: true;
 $enable-shadows: true;
 
 // Customize some defaults
-$body-color: #333;
+$body-color: #000;
 $body-bg: #fff;
-$border-radius: .4rem;
-$success: #7952b3;
+
+$font-size-base: .875rem; // Assumes the browser default, typically `16px`
+$line-height-base: 1.428571429;
+
+$font-family-base: "Roboto", "Montserrat";
+
+$networks-color: #ffd23b;
+
+$individual-studies-color: #ffaa29;
+$collected-datasets-color: #f99154;
+$collected-variables-color: #e86f38;
+
+$individual-studies-with-variables-color: #f48d31;
+
+$harmonization-initiatives-color: #ee7b75;
+$harmonization-protocols-color: #e0575e;
+$dataschema-variables-color: #d13346;
+
+$static-pages-color: #d86b5c;
+
+$primary: #6c9a00;
+$success: #6c9a00;
+$info: #3498db;
+$warning: #f39c12;
+$danger: #e74c3c;
 
 @import "bootstrap/scss/functions"; // Required
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 1056px,
+  xl: 1360px
+);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1040px,
+  xl: 1320px
+);
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
 @import "bootstrap/scss/variables"; // Required
 @import "bootstrap/scss/mixins"; // Required
 
@@ -44,45 +88,871 @@ $success: #7952b3;
 // @import "bootstrap/scss/images";
 // @import "bootstrap/scss/code";
 @import "bootstrap/scss/grid";
-// @import "bootstrap/scss/tables";
-// @import "bootstrap/scss/forms";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/transitions";
-// @import "bootstrap/scss/dropdown";
-// @import "bootstrap/scss/button-group";
-// @import "bootstrap/scss/input-group"; // Requires forms
-// @import "bootstrap/scss/custom-forms";
-// @import "bootstrap/scss/nav";
-// @import "bootstrap/scss/navbar"; // Requires nav
-// @import "bootstrap/scss/card";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/input-group"; // Requires forms
+@import "bootstrap/scss/custom-forms";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar"; // Requires nav
+@import "bootstrap/scss/card";
 // @import "bootstrap/scss/breadcrumb";
-// @import "bootstrap/scss/pagination";
-// @import "bootstrap/scss/badge";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
 // @import "bootstrap/scss/jumbotron";
-// @import "bootstrap/scss/alert";
+@import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/media";
 // @import "bootstrap/scss/list-group";
 @import "bootstrap/scss/close";
-// @import "bootstrap/scss/toasts";
+@import "bootstrap/scss/toasts";
 @import "bootstrap/scss/modal"; // Requires transitions
 // @import "bootstrap/scss/tooltip";
 // @import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
 // @import "bootstrap/scss/spinners";
 @import "bootstrap/scss/utilities";
-// @import "bootstrap/scss/print";
+@import "bootstrap/scss/print";
 
 
 //
 // Custom styles
 //
 
-body {
-  padding: 3rem 1.5rem;
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-// Style Bootstrap icons
-.bi {
-  fill: currentColor;
+@font-face {
+  font-family: "Montserrat-bold";
+  src: url("../fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RobotoMono";
+  src: url("../fonts/RobotoMono/RobotoMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "mlstr";
+  src: url("../fonts/mlstr.eot");
+  src: url("../fonts/mlstr.eot?#iefix") format("embedded-opentype"),
+  url("../fonts/mlstr.woff") format("woff"),
+  url("../fonts/mlstr.ttf") format("truetype"),
+  url("../fonts/mlstr.svg#mlstr") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "mlstr" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="i-mlstr-"]:before,
+[class*=" i-mlstr-"]:before {
+  font-family: "mlstr" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i-mlstr {
+  text-align: center;
+  vertical-align: bottom;
+  margin: 0;
+  padding: 0;
+}
+
+.i-mlstr-studies-rond:before {
+  content: "\e108";
+}
+
+.i-mlstr-studies-variables-rond:before {
+  content: "\e109";
+}
+
+.i-mlstr-variables-rond:before {
+  content: "\e110";
+}
+
+.i-mlstr-download-button:before {
+  content: "\e101";
+}
+
+.i-mlstr-data-harmonization:before {
+  content: "\e100";
+}
+
+.i-mlstr-harmonize-projects:before {
+  content: "\e102";
+}
+
+.i-mlstr-maelstrom-catalogue:before {
+  content: "\e103";
+}
+
+.i-mlstr-networks:before {
+  content: "\e104";
+}
+
+.i-mlstr-networks-rond:before {
+  content: "\e105";
+}
+
+.i-mlstr-partnership:before {
+  content: "\e106";
+}
+
+.i-mlstr-studies:before {
+  content: "\e107";
+}
+
+.i-mlstr-whatweoffer:before {
+  content: "\e111";
+}
+
+.i-mlstr-harmonization-protocol-rond:before {
+  content: "\e112";
+}
+
+.i-mlstr-initiative-rond:before {
+  content: "\e113";
+}
+
+.dashboard a {
+  text-decoration: none !important;
+}
+
+.dashboard .metrics {
+  padding-top: 5px;
+}
+
+.dashboard .count {
+  font-family: "Montserrat";
+  font-weight: bold;
+  font-size: 22px;
+  color: inherit;
+}
+
+.dashboard a:hover {
+  cursor: pointer !important;
+  color: inherit;
+}
+
+.dashboard .document{
+  color: black;
+}
+
+.dashboard .icon:before {
+  vertical-align: middle;
+  font-size: 50px !important;
+  padding-right: 20px;
+}
+
+.dashboard a[href]:hover {
+  text-shadow: 0.3px 0.4px 0 currentColor;
+  filter: brightness(0.90);
+}
+
+.dashboard .networks, .dashboard .networks:hover {
+  padding-top: 5px;
+  color: $networks-color;
+}
+
+.dashboard .individual-studies, .dashboard .individual-studies:hover {
+  padding-top: 5px;
+  color: $individual-studies-color;
+}
+
+.dashboard .collected-variables, .dashboard .collected-variables:hover {
+  padding-top: 5px;
+  color: $collected-variables-color;
+}
+
+.dashboard .individual-studies-with-variables, .dashboard .individual-studies-with-variables:hover {
+  padding-top: 5px;
+  color: $individual-studies-with-variables-color;
+}
+
+.dashboard .harmonization-initiatives, .dashboard .harmonization-initiatives:hover {
+  padding-top: 5px;
+  color: $harmonization-initiatives-color;
+}
+
+.dashboard .harmonization-protocols, .dashboard .harmonization-protocols:hover {
+  padding-top: 5px;
+  color: $harmonization-protocols-color;
+}
+
+.dashboard .dataschema-variables, .dashboard .dataschema-variables:hover {
+  padding-top: 5px;
+  color: $dataschema-variables-color;
+}
+
+.mlstr-search-anchor {
+  display: none !important;
+}
+
+@media (min-width: 1200px) {
+  .mlstr-search-anchor {
+    display: inline-block !important;
+  }
+}
+
+small, .small {
+  font-size: 85%;
+}
+
+.clearfix::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+body .wrapper .content-wrapper {
+  margin-top: 130px !important;
+}
+
+body#search-page .wrapper .content-wrapper,
+body#list-page .wrapper .content-wrapper {
+  margin-top: 0 !important;
+}
+
+.content-wrapper {
+  background: #fff;
+}
+
+img.main-img {
+  width: 100%;
+}
+
+/* Menu */
+
+.nav-link.dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-top: 4px solid \9;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: $primary;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+  color: $primary;
+}
+
+.nav-pills .nav-link:not(.active):hover {
+  color: $primary;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #000;
+}
+
+.dropdown-toggle:not(.nav-link)::after {
+  content: none;
+}
+
+#search-page .content-wrapper .dropdown-toggle::after {
+  content: "";
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a.active {
+  color: #000 !important;
+  text-decoration: none;
+  background-color: #e6e6e6 !important;
+  color: #000 !important;
+  text-decoration: none;
+  background-color: #e6e6e6 !important;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.428571429;
+  color: #7b8a8b !important;
+  white-space: nowrap;
+}
+
+.layout-top-nav .wrapper .main-header .brand-image {
+  height: 65px;
+  margin-top: 4px;
+  max-width: none;
+}
+
+nav.main-header {
+  font-family: "Montserrat";
+  background-color: #e6e6e6;
+  min-height: 95px;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+body nav:not(.top-bar) {
+  margin-top: 25px;
+}
+
+nav.top-bar {
+  padding: 0px !important;
+  min-height: 26px !important;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #e4e4e4;
+  z-index: 1040 !important;
+}
+
+.groupSelector {
+  width: 100%;
+}
+
+.login-box .btn-primary {
+  background-color: $primary;
+}
+
+.top-bar ul.loginbar {
+  display: block;
+  margin-bottom: 0px;
+}
+
+.top-bar ul.loginbar li {
+  display: inline;
+  list-style: none;
+  position: relative;
+}
+
+.top-bar ul.loginbar li a,
+.topbar ul.loginbar li a:hover {
+  color: #7c8082;
+  font-size: 11px;
+}
+
+.top-bar ul.loginbar li a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.content-header.bg-info {
+  color: #000000 !important;
+  background-color: white !important;
+}
+
+.content-header .breadcrumb a:hover {
+  text-decoration: underline !important;
+}
+
+/* Some Format */
+
+h1, h2, h3 {
+  font-family: "Montserrat";
+  letter-spacing: 2px;
+  font-weight: lighter;
+}
+
+.maelstrom-catalogue .promo-box {
+  margin-top: 0px !important;
+  min-height: 255px;
+}
+
+.promo-box {
+  margin-top: 80px;
+  padding: 15px 50px 15px 50px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.promo-box strong {
+  font-family: "Montserrat-bold";
+  font-size: 26px;
+}
+
+.promo-box:hover {
+  background-color: #e6e6e6;
+}
+
+.promo-box:hover a {
+  text-decoration: none !important;
+}
+
+.promo-box img {
+  height: 120px !important;
+  margin-bottom: 1em !important;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+.promo-box a {
+  color: black !important;
+  text-decoration: none;
+}
+
+/* Footer */
+
+.footer-v1 {
+  background-color: #2a2825;
+  color: #fff;
+  font-size: 16px;
+}
+
+.footer-v1 .wihte {
+  color: #fff;
+  margin-top: 10px;
+}
+
+.footer-v1 a {
+  color: #686766;
+}
+
+.footer-v1 li {
+  list-style-type: none;
+}
+
+.footer {
+  margin-top: 45px;
+  padding-top: 35px;
+  padding-bottom: 36px;
+}
+
+/* Search Page */
+
+.sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+  background-color: $primary;
+}
+
+@media (min-width: 768px) {
+  #taxonomy-modal .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 576px) {
+  #taxonomy-modal .card-body .col-sm-4 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}
+
+#taxonomy-modal .modal-dialog {
+  max-width: 67%;
+}
+
+#taxonomy-modal .panel-vocabulary-description, #taxonomy-modal .panel-taxonomy-description {
+  display: none;
+}
+
+#taxonomy-modal .panel-vocabulary-title::after,
+#harmonizedTable thead th:nth-child(2)::after {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  margin-left: 0.25em;
+  content: "\f05a";
+  opacity: 0.6;
+}
+
+#taxonomy-modal .panel-taxonomy-title {
+  font-size: 1.25rem;
+}
+
+#taxonomy-modal .card-header {
+  padding: .5rem 1.25rem;;
+}
+
+#taxonomy-modal .card-body input[type=text] {
+  margin-bottom: 1.25em;
+}
+
+#taxonomy-modal .card-body ul {
+  margin-bottom: .5em;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link i {
+  display: none;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link {
+  color: $primary;
+  border-color: $primary;
+  margin-bottom: 0.5em;
+  text-decoration: none;
+}
+
+#taxonomy-modal .card-body button[type=button].btn-link:hover {
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary;
+  text-decoration: none;
+}
+
+/* Other */
+
+.main-container {
+  margin-bottom: 20px;
+}
+
+dl.striped > dt:nth-of-type(odd), dl.striped > dd:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05) ;
+}
+
+.mlstr-border {
+  border: 1px solid rgba(222, 226, 230, 0.3) !important;
+}
+
+dl.striped > dd {
+  margin-bottom: 0 !important;
+}
+
+dl.striped > dt, dl.striped > dd {
+  padding-top: 0.3em !important;
+  padding-bottom: 0.3em !important;
+}
+
+.table-responsive>.table-bordered {
+  border: 1px solid rgba(222,226,230,0.5);
+}
+.table-bordered td, .table-bordered th {
+  border: 1px solid rgba(222,226,230,0.5);
+}
+
+.list-comma-separated li:not(:last-child):after {
+  content: ",";
+}
+
+.list-comma-separated li {
+  margin-right: 0 !important;
+}
+
+#vosr-coverage-result .badge.badge-primary {
+  color: $primary;
+  background-color: initial;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#populations a.nav-link {
+  border: 0.1em solid $primary !important;
+  border-color: $primary !important;
+  margin-left: 0.3em !important;
+  margin-right: 0.3em !important;
+}
+
+#populations a.nav-link:not(.active):hover {
+  color: $primary;
+}
+
+table th, table td {
+  padding: .3rem !important;
+}
+
+#micaLinks .btn-group>.btn-group:not(:first-child), #micaLinks .btn-group>.btn:not(:first-child) {
+  margin-left: -.5em;
+}
+
+#micaLinks .nav-link {
+  display: block;
+  padding: initial;
+}
+
+#micaLinks .btn {
+  font-size: $font-size-base;
+}
+
+#harmonizedTable td:not(:first-child),
+#harmonizedTable th:not(:first-child),
+#harmonizedVariables td:nth-child(4),
+#harmonizedVariables th:nth-child(4) {
+  text-align: center !important;
+}
+
+#harmonizedTable th {
+  white-space: nowrap;
+}
+
+div#list-variables .fa-tag {
+  font-size: 0.7em;
+}
+
+.btn-maelstrom-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: $individual-studies-color;
+  border-color: #fff;
+  white-space: normal;
+  text-decoration: none;
+}
+
+.btn-maelstrom-filter:hover,
+.btn-maelstrom-filter.active {
+  color: #000;
+  background: $networks-color;
+  border-color: #fff;
+  text-decoration: none;
+}
+
+.btn-maelstrom-filter p {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+}
+
+.btn-maelstrom-filter:hover p,
+.btn-maelstrom-filter.active p {
+  bottom: -1.75rem;
+  border-bottom: 6px solid $networks-color;
+}
+
+.text-mlstr {
+  color: $networks-color;
+}
+
+.text-muted-60 {
+  color: rgba(108,117,125, 0.6);
+}
+
+.btn-maelstrom-filter img.alt,
+.btn-maelstrom-filter img.alt {
+  display: none;
+}
+
+.btn-maelstrom-filter:hover img.alt,
+.btn-maelstrom-filter.active img.alt {
+  display: inline-block;
+}
+
+.btn-maelstrom-filter:hover img.main,
+.btn-maelstrom-filter.active img.main {
+  display: none;
+}
+
+.progress-bar {
+  background-color: $individual-studies-color;
+}
+
+/* Search Table Columns */
+
+table#vosr-studies-result th.column-acronym,
+table#vosr-variables-result th.column-name {
+  width: 15% !important;
+}
+
+table#vosr-variables-result td > i.fa-info-circle  {
+  display: none !important;
+}
+
+table#vosr-networks-result th.column-acronym {
+  width: 15% !important;
+}
+
+table#vosr-networks-result th.column-name,
+table#vosr-studies-result th.column-name {
+  width: 50% !important;
+}
+
+table#vosr-variables-result th.column-label {
+  width: 20% !important;
+}
+
+table[id*="individual-studies"] .column-acronym {
+  width: 15% !important;
+}
+
+table[id*="individual-studies"] .column-name {
+  width: 40% !important;
+}
+
+table[id*="individual-studies"] .column-study-design {
+  width: 10% !important;
+}
+
+table[id*="individual-studies"] .column-participants {
+  width: 10% !important;
+}
+
+table[id*="individual-studies"] .column-countries {
+  width: 10% !important;
+}
+
+table[id*="individual-studies"] .column-variables {
+  width: 5% !important;
+}
+
+i.text-partial {
+  color: rgb(142, 98, 63) !important;
+}
+
+.badge.badge-partial {
+  color: white !important;
+  background-color: rgb(142, 98, 63) !important;
+}
+
+#search-application #micaLinks .dropdown-menu {
+  left: -7.2em;
+}
+
+#taxonomy-modal div.card-body {
+  padding-bottom: .3rem!important;
+  padding-top: .6rem !important;
+}
+
+#taxonomy-modal .form-check-input {
+  margin-top: .2rem;
+}
+
+#tab_coverage .custom-control-input:checked~.custom-control-label::before {
+  color: #fff;
+  border-color: $primary;
+  background-color: $primary;
+  box-shadow: none;
+}
+
+#tab_coverage .custom-control-label {
+  position: relative;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+#tab_coverage label:not(.form-check-label):not(.custom-file-label) {
+  font-weight: 400;
+}
+
+#tab_coverage .custom-switch .custom-control-label::after {
+  top: calc(.125rem + 2px);
+}
+
+#tab_coverage .custom-control-label::before {
+  top: .125rem;
+}
+
+#taxonomy-modal #populations-selectionCriteria-newborn-select-all,
+#taxonomy-modal #populations-selectionCriteria-twins-select-all,
+#taxonomy-modal #populations-selectionCriteria-newborn-false,
+#taxonomy-modal #populations-selectionCriteria-twins-false,
+#taxonomy-modal label[for="populations-selectionCriteria-newborn-false"],
+#taxonomy-modal label[for="populations-selectionCriteria-twins-false"] {
+  display: none;
+}
+
+.popover-row {
+  white-space: nowrap !important;
+}
+
+.popover-body p {
+  margin-bottom: 0 !important;
+}
+
+.coverage-row-popup {
+  position: fixed;
+  z-index: 9999;
+}
+.coverage-row-popup .coverage-row-popup-content {
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  background-color: #fff;
+  background-clip: padding-box;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.coverage-row-popup table tbody th {
+  font-size: 12px !important;
+  width: auto !important;
+}
+.coverage-row-popup table tbody td {
+  font-size: 12px !important;
+  color: black !important;
+}
+
+#vosr-coverage-result .fa-times {
+  color: rgba(108, 117, 125, 0.7);
+}
+
+.promo-box-col {
+  cursor: pointer;
+}
+
+#tab_lists #results-tabContent #vosr-networks-result thead tr:last-child  th:nth-child(n),
+#tab_lists #results-tabContent #vosr-networks-result tbody tr td:nth-child(n+3), 
+#tab_lists #results-tabContent #vosr-studies-result thead tr:nth-child(1) th:nth-child(n+5),
+#tab_lists #results-tabContent #vosr-studies-result thead tr:last-child th:nth-child(n+6),
+#tab_lists #results-tabContent #vosr-studies-result tbody tr td:nth-child(n+10), 
+#tab_lists #results-tabContent #vosr-datasets-result thead tr th:nth-child(n+4),
+#tab_lists #results-tabContent #vosr-datasets-result tbody tr td:nth-child(n+4),
+#tab_coverage #vosr-coverage-result thead tr:last-child th:nth-child(n+2), 
+#tab_coverage #vosr-coverage-result tbody tr td:nth-child(n+2),
+div[id^="vosrs-charts"][id$="-table"] table thead tr th:nth-child(n+2),
+div[id^="vosrs-charts"][id$="-table"] table tbody tr td:nth-child(n+2),
+div[id^="vosrs-charts"][id$="-table"] table tfoot tr th:nth-child(n+2),
+#network-page table[id$="-individual-studies"] thead tr th:nth-child(n+5),
+#network-page table[id$="-individual-studies"] tbody tr td:nth-child(n+5),
+#individual-study-page table[id$="-networks"] thead tr th:nth-child(n+3),
+#individual-study-page table[id$="-networks"] tbody tr td:nth-child(n+3),
+#individual-study-page table[id$="-datasets"] thead tr th:nth-child(n+4),
+#individual-study-page table[id$="-datasets"] tbody tr td:nth-child(n+4)  {
+  text-align: right;
+}
+
+
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] thead tr th:nth-child(2),
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] tbody tr td:nth-child(2),
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] tfoot tr th:nth-child(2),
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] thead tr th:nth-child(2),
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] tbody tr td:nth-child(2),
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] tfoot tr th:nth-child(2) {
+  position: relative;
+}
+
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] thead tr th:nth-child(2) *,
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] tbody tr td:nth-child(2) *,
+div[id^="vosrs-charts-populations-model-selectionCriteria-countriesIso"][id$="-table"] tfoot tr th:nth-child(2) *,
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] thead tr th:nth-child(2) *,
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] tbody tr td:nth-child(2) *,
+div[id^="vosrs-charts-model-numberOfParticipants-participant-number-range"][id$="-table"] tfoot tr th:nth-child(2) * {
+  position: relative;
+  right: 50%;
 }
