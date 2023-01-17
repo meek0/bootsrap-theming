@@ -56,6 +56,10 @@ $info: #3498db;
 $warning: #f39c12;
 $danger: #e74c3c;
 
+$theme-colors: (
+  "default": #f8f9fa
+);
+
 $font-size-xs: $font-size-base * .75;
 $line-height-xs: 1.5;
 $border-radius-xs: .15rem;
@@ -75,20 +79,20 @@ $btn-border-radius-xs: $border-radius-xs;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 1056px,
-  xl: 1360px
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1350px
 );
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
 @include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 1040px,
-  xl: 1320px
+  sm: 720px,
+  md: 960px,
+  lg: 1140px,
+  xl: 1350px
 );
 
 @include _assert-ascending($container-max-widths, "$container-max-widths");
@@ -929,7 +933,7 @@ a:hover {
 #query-builder .variable .btn-secondary,
 #query-builder .study .btn-secondary,
 #query-builder .dataset .btn-secondary,
-#query-builder .network .btn-secondary{
+#query-builder .network .btn-secondary {
   background-color: #f8f9fa;
   border-color: #ddd;
   color: #444;
