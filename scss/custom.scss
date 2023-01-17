@@ -25,7 +25,6 @@
 // Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
 
 // Toggle global options
-$enable-gradients: true;
 $enable-shadows: true;
 
 // Customize some defaults
@@ -52,10 +51,25 @@ $dataschema-variables-color: #d13346;
 $static-pages-color: #d86b5c;
 
 $primary: #6c9a00;
-$success: #6c9a00;
+$success: $primary;
 $info: #3498db;
 $warning: #f39c12;
 $danger: #e74c3c;
+
+$font-size-xs: $font-size-base * .75;
+$line-height-xs: 1.5;
+$border-radius-xs: .15rem;
+
+$input-btn-padding-y-xs: .125rem;
+$input-btn-padding-x-xs: .25rem;
+$input-btn-font-size-xs: $font-size-xs;
+$input-btn-line-height-xs: $line-height-xs;
+
+$btn-padding-y-xs: $input-btn-padding-y-xs;
+$btn-padding-x-xs: $input-btn-padding-x-xs;
+$btn-font-size-xs: $input-btn-font-size-xs;
+$btn-line-height-xs: $input-btn-line-height-xs;
+$btn-border-radius-xs: $border-radius-xs;
 
 @import "bootstrap/scss/functions"; // Required
 
@@ -85,12 +99,17 @@ $container-max-widths: (
 @import "bootstrap/scss/root"; // Required
 @import "bootstrap/scss/reboot"; // Required
 @import "bootstrap/scss/type";
-// @import "bootstrap/scss/images";
+@import "bootstrap/scss/images";
 // @import "bootstrap/scss/code";
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/tables";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
+
+.btn-xs {
+  @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-line-height-xs, $btn-border-radius-xs);
+}
+
 @import "bootstrap/scss/transitions";
 @import "bootstrap/scss/dropdown";
 @import "bootstrap/scss/button-group";
@@ -99,19 +118,19 @@ $container-max-widths: (
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar"; // Requires nav
 @import "bootstrap/scss/card";
-// @import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/breadcrumb";
 @import "bootstrap/scss/pagination";
 @import "bootstrap/scss/badge";
 // @import "bootstrap/scss/jumbotron";
 @import "bootstrap/scss/alert";
 // @import "bootstrap/scss/progress";
 // @import "bootstrap/scss/media";
-// @import "bootstrap/scss/list-group";
+@import "bootstrap/scss/list-group";
 @import "bootstrap/scss/close";
 @import "bootstrap/scss/toasts";
 @import "bootstrap/scss/modal"; // Requires transitions
-// @import "bootstrap/scss/tooltip";
-// @import "bootstrap/scss/popover";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
 // @import "bootstrap/scss/carousel";
 // @import "bootstrap/scss/spinners";
 @import "bootstrap/scss/utilities";
@@ -526,6 +545,124 @@ b, strong {
   text-decoration: none;
 }
 
+.alert-success {
+  color: #fff;
+  background-color: $success;
+}
+
+.bg-success {
+  background-color: $success !important;
+}
+
+a.bg-success:hover, a.bg-success:focus,
+button.bg-success:hover,
+button.bg-success:focus {
+  background-color: darken($success, 15%) !important;
+}
+
+#toast-container .toast-success {
+  background-color: $success !important;
+}
+
+#toast-container .toast-success:focus {
+  background-color: darken($success, 15%) !important;
+}
+
+.border-success {
+  border-color: $success !important;
+}
+
+.border-info {
+  border-color: $info !important;
+}
+
+.text-success {
+  color: $success !important;
+}
+
+.text-black {
+  color: #000 !important;
+}
+
+.badge-black {
+  color: #fff !important;
+  background-color: #000 !important;
+}
+
+.card-black {
+  border-top: 3px solid #000 !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: $primary;
+}
+
+.card-success.card-outline {
+  border-top: 3px solid $success;
+}
+
+.card-success.card-outline-tabs>.card-header a.active {
+  border-top: 3px solid $success;
+}
+
+#publications-app .card-success.card-outline-tabs>.card-header a.active {
+  border-top: 3px solid $individual-studies-color;
+}
+
+.callout.callout-success {
+  border-left-color: $success;
+}
+
+.callout a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+.io {
+  vertical-align: baseline !important;
+}
+
+.io::before {
+  vertical-align: middle;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: $primary;
+}
+
+.page-link {
+  color: $primary;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: $primary;
+  border-color: $primary;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover {
+  color: darken($success, 15%);
+  text-decoration: underline;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: $primary;
+}
+
 /* Footer */
 
 .footer-v1 {
@@ -627,6 +764,331 @@ b, strong {
   text-decoration: none;
 }
 
+/* Search Page Colors */
+
+.text-network {
+  color: $networks-color;
+}
+
+.text-study {
+  color: $individual-studies-color;
+}
+
+.text-dataset {
+  color: $collected-datasets-color;
+}
+
+.text-variable {
+  color: $collected-variables-color;
+}
+
+.text-page {
+  color: $static-pages-color;
+}
+
+.bg-network {
+  background-color: $networks-color;
+}
+
+.bg-study {
+  background-color: $individual-studies-color;
+}
+
+.bg-initiative {
+  background-color: $harmonization-initiatives-color;
+}
+
+.bg-dataset {
+  background-color: $collected-datasets-color;
+}
+
+.bg-variable {
+  background-color: $collected-variables-color;
+}
+
+.bg-page {
+  background-color: $static-pages-color;
+}
+
+.border-color-network {
+  border-color: $networks-color;
+}
+
+.border-color-study {
+  border-color: $individual-studies-color;
+}
+
+.border-color-dataset {
+  border-color: $collected-datasets-color;
+}
+
+.border-color-variable {
+  border-color: $collected-variables-color;
+}
+
+.border-color-page {
+  border-color: $static-pages-color;
+}
+
+.input-group-text-border-network {
+  border-color: $networks-color;
+}
+
+.input-group-text-border-study {
+  border-color: $individual-studies-color;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input-group-text-border-dataset {
+  border-color: $collected-datasets-color;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input-group-text-border-variable {
+  border-color: $collected-variables-color;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.input-group-text-border-page {
+  border-color: $static-pages-color;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+/* Search Page Query Builder */
+
+#query-builder .variable .btn-info {
+  border: solid 2px $collected-variables-color;
+  background-color: $collected-variables-color;
+}
+
+#query-builder .variable .btn-info:hover {
+  border: solid 2px darken($collected-variables-color, 15%);
+  background-color: darken($collected-variables-color, 15%);
+}
+
+.harmoMode #query-builder .variable .btn-info {
+  border: solid 2px $dataschema-variables-color;
+  background-color: $dataschema-variables-color;
+}
+
+.harmoMode #query-builder .variable .btn-info:hover {
+  border: solid 2px darken($dataschema-variables-color, 15%);
+  background-color: darken($dataschema-variables-color, 15%);
+}
+
+#query-builder .dataset .btn-info {
+  border: solid 2px $collected-datasets-color;
+  background-color: $collected-datasets-color;
+}
+
+#query-builder .dataset .btn-info:hover {
+  border: solid 2px darken($collected-datasets-color, 15%);
+  background-color: darken($collected-datasets-color, 15%);
+}
+
+.harmoMode #query-builder .dataset .btn-info {
+  border: solid 2px $harmonization-protocols-color;
+  background-color: $harmonization-protocols-color;
+}
+
+.harmoMode #query-builder .dataset .btn-info:hover {
+  border: solid 2px darken($harmonization-protocols-color, 15%);
+  background-color: darken($harmonization-protocols-color, 15%);
+}
+
+#query-builder .study .btn-info {
+  border: solid 2px $individual-studies-color;
+  background-color: $individual-studies-color;
+}
+
+#query-builder .study .btn-info:hover {
+  border: solid 2px darken($individual-studies-color, 15%);
+  background-color: darken($individual-studies-color, 15%);
+}
+
+.harmoMode #query-builder .study .btn-info {
+  border: solid 2px $harmonization-initiatives-color;
+  background-color: $harmonization-initiatives-color;
+}
+
+.harmoMode #query-builder .study .btn-info:hover {
+  border: solid 2px darken($harmonization-initiatives-color, 15%);
+  background-color: darken($harmonization-initiatives-color, 15%);
+}
+
+#query-builder .network .btn-info {
+  border: solid 2px $networks-color;
+  background-color: $networks-color;
+}
+
+#query-builder .network .btn-info:hover {
+  border: solid 2px darken($networks-color, 15%);
+  background-color: darken($networks-color, 15%);
+}
+
+#query-builder .variable .btn-secondary,
+#query-builder .study .btn-secondary,
+#query-builder .dataset .btn-secondary,
+#query-builder .network .btn-secondary{
+  background-color: #f8f9fa;
+  border-color: #ddd;
+  color: #444;
+}
+
+li.variables, .btn.variables {
+  border: solid 2px $collected-variables-color;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.harmoMode li.variables, .harmoMode .btn.variables {
+  border: solid 2px $dataschema-variables-color;
+}
+
+li.variables .nav-link {
+  color: #000 !important;
+}
+
+li.variables .nav-link.active,
+li.variables .nav-link:hover, .btn.variables:hover {
+  background-color: $collected-variables-color !important;
+  border-radius: unset !important;
+  color: #000 !important;
+}
+
+.harmoMode li.variables .nav-link.active,
+.harmoMode li.variables .nav-link:hover, .harmoMode .btn.variables:hover {
+  background-color: $dataschema-variables-color !important;
+  color: #fff !important;
+}
+
+li.studies, .btn.studies {
+  border: solid 2px $individual-studies-color;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.harmoMode li.studies, .harmoMode .btn.studies {
+  border: solid 2px $harmonization-initiatives-color;
+}
+
+li.studies .nav-link {
+  color: #000 !important;
+}
+
+li.studies .nav-link.active,
+li.studies .nav-link:hover, .btn.studies:hover {
+  background-color: $individual-studies-color !important;
+  border-radius: unset !important;
+  color: #000 !important;
+}
+
+.harmoMode li.studies .nav-link.active,
+.harmoMode li.studies .nav-link:hover, .harmoMode .btn.studies:hover {
+  background-color: $harmonization-initiatives-color !important;
+  color: #fff !important;
+}
+
+li.networks, .btn.networks {
+  border: solid 2px $networks-color;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+li.networks .nav-link {
+  color: #000 !important;
+}
+
+li.networks .nav-link.active,
+li.networks .nav-link:hover, .btn.networks:hover {
+  background-color: $networks-color !important;
+  border-radius: unset !important;
+  color: #000 !important;
+}
+
+li.datasets, .btn.datasets {
+  border: solid 2px $collected-datasets-color;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.harmoMode li.datasets, .harmoMode .btn.datasets {
+  border: solid 2px $harmonization-protocols-color;
+}
+
+li.datasets .nav-link {
+  color: #000 !important;
+}
+
+li.datasets .nav-link.active,
+li.datasets .nav-link:hover, .btn.datasets:hover {
+  background-color: $collected-datasets-color !important;
+  border-radius: unset !important;
+  color: #000 !important;
+}
+
+.harmoMode li.datasets .nav-link.active,
+.harmoMode li.datasets .nav-link:hover, .harmoMode .btn.datasets:hover {
+  background-color: $harmonization-protocols-color !important;
+  color: #fff !important;
+}
+
+/* Search Page Result Table */
+
+span.filter-maelstrom .btn-info {
+  color: #000;
+  background-color: #fff;
+  border-color: #bfbfbf;
+}
+
+span.filter-maelstrom .btn-info:not(:disabled):not(.disabled).active,
+span.filter-maelstrom .btn-info:hover {
+  color: #000;
+  background-color: #e6e6e6;
+  border-color: #000;
+}
+
+ul#search-tabs.nav-pills .btn {
+  color: #000;
+  margin-right: 5px;
+}
+
+ul#search-tabs.nav-pills .btn:not(:disabled):not(.disabled).active,
+ul#search-tabs.nav-pills .btn-default:hover {
+  color: #000;
+  background-color: #6c757d;
+}
+
+ul#search-tabs .nav-link.active {
+  border-top: 3px solid $primary;
+}
+
+#mode-tabs ul .nav-link.active {
+  border-top: 3px solid $individual-studies-color;
+}
+
+#search-page [role="tooltip"] {
+  max-width: 576px !important;
+}
+
+div#summary-statistics .nav-link.active {
+  border-top: 3px solid $primary;
+}
+
+div#summary-statistics .card {
+  border-top: 3px solid #f8f9fa !important;
+}
+
+.page-link {
+  color: #6c757d !important;
+}
+
+.page-item.active .page-link {
+  color: #000000;
+  background-color: #bfbfbf;
+  border-color: #bfbfbf;
+}
+
 /* Other */
 
 .main-container {
@@ -634,7 +1096,7 @@ b, strong {
 }
 
 dl.striped > dt:nth-of-type(odd), dl.striped > dd:nth-of-type(odd) {
-  background-color: rgba(0,0,0,.05) ;
+  background-color: rgba(0, 0, 0, .05) ;
 }
 
 .mlstr-border {
@@ -651,10 +1113,10 @@ dl.striped > dt, dl.striped > dd {
 }
 
 .table-responsive>.table-bordered {
-  border: 1px solid rgba(222,226,230,0.5);
+  border: 1px solid rgba(222, 226, 230, 0.5);
 }
 .table-bordered td, .table-bordered th {
-  border: 1px solid rgba(222,226,230,0.5);
+  border: 1px solid rgba(222, 226, 230, 0.5);
 }
 
 .list-comma-separated li:not(:last-child):after {
